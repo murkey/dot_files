@@ -1,0 +1,60 @@
+{
+  "docker.showExplorer": false,
+  "editor.renderWhitespace": "all",
+  "editor.insertSpaces": true,
+  "editor.codeLens": false,
+  "editor.dragAndDrop": false,
+  "editor.fontFamily": "Input Mono",
+  "editor.fontSize": 13,
+  "editor.hover": false,
+  "editor.minimap.enabled": false,
+  "editor.parameterHints": false,
+  "editor.scrollBeyondLastLine": false,
+  "editor.snippetSuggestions": "top",
+  "editor.tabSize": 2,
+  "eslint.packageManager": "yarn",
+  "files.autoSave": "onWindowChange",
+  "files.exclude": {
+    "**/.git": true,
+    "**/.svn": true,
+    "**/.hg": true,
+    "**/CVS": true,
+    "**/.DS_Store": true,
+    "**/.coffee": true,
+    "**/.coverage": true,
+    "**/.node_history": true,
+    "**/env": true,
+    "*.heapsnapshot": true
+  },
+  "files.insertFinalNewline": true,
+  "files.trimTrailingWhitespace": true,
+  "flowide.useCodeSnippetsOnFunctionSuggest": false,
+  "[javascript]": {
+    "editor.formatOnSave": true
+  },
+  "[javascriptreact]": {
+    "editor.formatOnSave": true
+  },
+  "javascript.validate.enable": false,
+  "prettier.requireConfig": true,
+  "path-intellisense.mappings": {
+    "local_modules": "${workspaceRoot}/local_modules"
+  },
+  "search.exclude": {
+    "**/node_modules": true,
+    "**/bower_components": true,
+    "**/flow-typed": true,
+    "**/build": true,
+    "**/lib": true
+  },
+  "terminal.external.osxExec": "iTerm.app",
+  "terminal.integrated.fontSize": 13,
+  "terminal.integrated.lineHeight": 1.25,
+  "window.openFilesInNewWindow": "off",
+  "workbench.editor.enablePreviewFromQuickOpen": false,
+  "workbench.startupEditor": "none",
+  "window.title": "${activeEditorMedium}${separator}${folderName}",
+  "window.zoomLevel": 0,
+  "workbench.colorTheme": "Monokai",
+  "workbench.editor.revealIfOpen": true,
+}

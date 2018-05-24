@@ -1,21 +1,23 @@
 #!/bin/zsh
 
-git_dir() {
+_zsh_git_dir() {
   git rev-parse --is-inside-work-tree >/dev/null 2>&1
 }
 
-git_branch() {
-  echo "$(git symbolic-ref --short HEAD 2>/dev/null || git rev-parse --short HEAD 2>/dev/null)"
-}
-
-git_status() {
+_zsh_git_status() {
   git status --short 2>/dev/null
 }
 
-if git_dir ; then
-  if [[ -z $(git_status) ]]; then
-    echo -n "%F{green}($(git_branch))%f "
-  else
-    echo -n "%F{yellow}($(git_branch))%f "
+_zsh_git_branch() {
+  echo "$(git symbolic-ref --short HEAD 2>/dev/null || git rev-parse --short HEAD 2>/dev/null)"
+}
+
+_zsh_git_prompt() {
+  if _zsh_git_dir ; then
+    if [[ -z $(_zsh_git_status) ]]; then
+      echo -n "%F{2}($(_zsh_git_branch))%f "
+    else
+      echo -n "%F{3}($(_zsh_git_branch))%f "
+    fi
   fi
-fi
+}

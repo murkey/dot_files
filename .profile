@@ -28,8 +28,7 @@ alias o='open -a'
 # git
 if type git > /dev/null 2>&1; then
   alias g='git'
-  alias s='git status --show-stash'
-  alias sp='git show -p'
+  alias s='git status --show-stash --untracked-files=all'
   alias l='git log --stat'
   alias lg='git log --oneline --graph'
   alias d='git diff'
@@ -57,7 +56,8 @@ fi
 
 # ag
 if type ag > /dev/null 2>&1; then
-  alias ag='ag -C2 --ignore-dir .git --ignore-dir build --ignore-dir node_modules --pager less'
+  alias ag='ag --hidden -B2 -A2 --pager less --path-to-ignore $HOME/.ignore'
+  alias aq='ag --hidden -B2 -A2 --pager less --path-to-ignore $HOME/.ignore -Q'
 fi
 
 # android

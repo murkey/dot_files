@@ -4,10 +4,15 @@ setopt no_auto_menu
 setopt no_beep
 
 # prompt
+source $HOME/.zsh/git-prompt
+source $HOME/.zsh/nodenv-prompt
 autoload -U colors && colors
 setopt prompt_subst
-PS1='%n@%m %F{cyan}%~%f $($HOME/.zsh/git-prompt)%(?..%F{red})%#%f '
-RPS1='$($HOME/.zsh/rbenv-prompt)%t'
+PS1='%n@%m %F{cyan}%~%f $(_zsh_git_prompt)%(?..%F{red})♪%f '
+RPS1='$(_zsh_nodenv_prompt)'
+
+# put current directory in the title
+precmd () {print -Pn "\e]0;%~\a"}
 
 # key bindings
 bindkey -e
@@ -34,10 +39,13 @@ setopt hist_no_store
 WORDCHARS=''
 
 # spaces are ok for | and &
-ZLE_REMOVE_SUFFIX_CHARS=' \t\n'
+# ZLE_REMOVE_SUFFIX_CHARS=$' \t\n'
+ZLE_SPACE_SUFFIX_CHARS=$'&|'
 
 # comments are ok
 setopt interactivecomments
 
 . $HOME/.profile
 
+# added by travis gem
+[ -f /Users/mikehays/.travis/travis.sh ] && source /Users/mikehays/.travis/travis.sh

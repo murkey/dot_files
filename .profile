@@ -2,8 +2,8 @@
 export CLICOLOR='yes'
 export LSCOLORS='gxfxcxdxbxegedabagacad'
 
-# case insensitve searching, handle color, keep output on screen
-export LESS='-iRX'
+# smart-case searching, verbose prompt, handle ANSI color characters, keep output on screen
+export LESS='--ignore-case --LONG-PROMPT --RAW-CONTROL-CHARS --no-init'
 
 # color grep matches
 export GREP_OPTIONS='--color=auto'
@@ -23,7 +23,6 @@ alias .......='cd ../../../../../..'
 alias ........='cd ../../../../../../..'
 alias .........='cd ../../../../../../../..'
 alias f='find . -iname'
-alias o='open -a'
 
 # git
 if type git > /dev/null 2>&1; then
@@ -34,38 +33,55 @@ if type git > /dev/null 2>&1; then
   alias d='git diff'
   alias ds='git diff --staged'
   alias co='git checkout'
+  alias c='git commit'
   alias a='git add'
-  alias an='git add -N'
-  alias ap='git add -p'
-  alias cv='git commit -v'
-  alias cn='git commit --amend --no-edit'
   alias ff='git merge --ff-only'
   alias p='git pull'
-  alias pu='git push -u'
 fi
 
-# homebrew
 if type brew > /dev/null 2>&1; then
   export PATH="/usr/local/bin:/usr/local/sbin:$PATH"
+  export HOMEBREW_CASK_OPTS="--appdir=/Applications"
 fi
 
-# neovim
 if type nvim > /dev/null 2>&1; then
   alias vim='nvim'
 fi
 
-# ag
-if type ag > /dev/null 2>&1; then
-  alias ag='ag --hidden -B2 -A2 --pager less --path-to-ignore $HOME/.ignore'
-  alias aq='ag --hidden -B2 -A2 --pager less --path-to-ignore $HOME/.ignore -Q'
+if type gsed > /dev/null 2>&1; then
+  alias sed='gsed'
 fi
 
-# android
+if type pgrep > /dev/null 2>&1; then
+  alias pgrep='pgrep -L'
+fi
+
+if type ag > /dev/null 2>&1; then
+  alias ag='ag --hidden -B2 -A2 --pager less --path-to-ignore $HOME/.agignore'
+fi
+
+if type rg > /dev/null 2>&1; then
+  alias rg='rg --smart-case --hidden -B2 -A2 --pretty'
+fi
+
 if [ -d '/Applications/Android Studio.app' ]; then
   export PATH="$PATH:$HOME/Library/Android/sdk/tools:$HOME/Library/Android/sdk/platform-tools"
 fi
 
-# rbenv
 if [ -d "$HOME/.rbenv" ]; then
   eval "$(rbenv init -)"
+fi
+
+if [ -d "$HOME/.yarn" ]; then
+  export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
+  alias y='yarn'
+fi
+
+if [ -d "$HOME/.nodenv" ]; then
+  eval "$(nodenv init -)"
+  export PATH="./node_modules/.bin:$PATH"
+fi
+
+if [ -d "$HOME/.pyenv" ]; then
+  eval "$(pyenv init -)"
 fi

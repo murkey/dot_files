@@ -6,4 +6,4 @@ jsconfig.json
 tags
 node_modules
 build
-flow-typed
+.prettierignore

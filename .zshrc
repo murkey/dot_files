@@ -1,4 +1,7 @@
 # completion
+if [ -d /usr/local/share/zsh-completions ]; then
+  fpath=(/usr/local/share/zsh-completions $fpath)
+fi
 autoload -U compinit && compinit
 setopt no_auto_menu
 setopt no_beep
@@ -8,8 +11,8 @@ source $HOME/.zsh/git-prompt
 source $HOME/.zsh/nodenv-prompt
 autoload -U colors && colors
 setopt prompt_subst
-PS1='%n@%m %F{cyan}%~%f $(_zsh_git_prompt)%(?..%F{red})♪%f '
-RPS1='$(_zsh_nodenv_prompt)'
+PROMPT='%n@%m %F{cyan}%~%f $(_zsh_git_prompt)%(?..%F{red})♪%f '
+RPROMPT='$(_zsh_nodenv_prompt)'
 
 # put current directory in the title
 precmd () {print -Pn "\e]0;%~\a"}
@@ -26,14 +29,14 @@ bindkey "\e[H" beginning-of-line
 bindkey "\e[F" end-of-line
 
 # history
-HISTSIZE=2000
-SAVEHIST=$HISTSIZE
+SAVEHIST=5000
+HISTSIZE=$SAVEHIST
 HISTFILE=$HOME/.zsh_history
-setopt append_history
-setopt hist_ignore_all_dups
-setopt hist_expire_dups_first
-setopt hist_ignore_space
-setopt hist_no_store
+setopt INC_APPEND_HISTORY
+setopt HIST_IGNORE_ALL_DUPS
+setopt HIST_IGNORE_SPACE
+setopt HIST_NO_STORE
+setopt HIST_REDUCE_BLANKS
 
 # slashes aren't words
 WORDCHARS=''
@@ -45,7 +48,8 @@ ZLE_SPACE_SUFFIX_CHARS=$'&|'
 # comments are ok
 setopt interactivecomments
 
-. $HOME/.profile
+source $HOME/.profile
 
-# added by travis gem
-[ -f /Users/mikehays/.travis/travis.sh ] && source /Users/mikehays/.travis/travis.sh
+if type direnv > /dev/null 2>&1; then
+  eval "$(direnv hook zsh)"
+fi

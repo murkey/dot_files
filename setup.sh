@@ -14,6 +14,8 @@ defaults write com.apple.HIToolbox AppleDictationAutoEnable -int '0'
 # Show all files
 defaults write com.apple.finder AppleShowAllFiles -bool 'YES'
 
+# Normal key repeat
+defaults write -g ApplePressAndHoldEnabled -bool 'NO'
 
 echo
 echo 'Installing Homebrew...'
@@ -26,7 +28,7 @@ PATH=/usr/local/bin:$PATH
 echo
 echo 'Installing command-line utilities...'
 brew install git
-brew install zsh neovim ag pgrep pkill hub
+brew install zsh neovim ag pgrep pkill watch hub gnu-sed
 
 echo 'Creating SSH key...'
 if ! [ -f ~/.ssh/id_rsa.pub ]; then
@@ -48,6 +50,7 @@ link_dottile () {
 if ! [ -d $HOME/code/dot_files ]; then
   git clone git@github.com:murkey/dot_files.git $HOME/code/dot_files
 fi
+link_dottile .ignore
 link_dottile .profile
 link_dottile .zsh
 link_dottile .zshrc

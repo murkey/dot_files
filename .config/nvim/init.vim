@@ -1,5 +1,4 @@
 " plug
-filetype off
 call plug#begin('~/.local/share/nvim/plugged')
 Plug 'junegunn/fzf'
 Plug 'junegunn/fzf.vim'
@@ -21,7 +20,7 @@ call plug#end()
 " general
 set title
 set nowrap
-set backspace=2
+set backspace=indent,eol,start
 set splitright
 set hidden
 
@@ -76,9 +75,11 @@ set mouse=a
 set clipboard=unnamed
 
 " autosave
+" TODO this was doing annoying things with NERDTree/folder views
 " autocmd FocusLost * wall
 
 " fzf
+" TODO convert to rg (https://github.com/junegunn/fzf.vim/commit/a3459df758e4b21a159294e0984af7e487bcd6bb)
 let $FZF_DEFAULT_COMMAND = "ag --hidden --ignore .git --ignore flow-typed --ignore '*.meta' --ignore 'tags' -g ''"
 nmap <leader>t :FZF<CR>
 command! -bang -nargs=* Ag
